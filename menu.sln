@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "menu", "menu\menu.csproj", "{AEEC3398-65C3-4B61-A689-85F7FF15598B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DC8ACCF8-9040-4F6B-9227-B7A4902FA940} = {DC8ACCF8-9040-4F6B-9227-B7A4902FA940}
+	EndProjectSection
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupGestion", "SetupGestion\SetupGestion.vdproj", "{2A5B142E-C80E-42EB-ABD4-76BD243699E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetierGestion", "MetierGestion\MetierGestion.csproj", "{DC8ACCF8-9040-4F6B-9227-B7A4902FA940}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AEEC3398-65C3-4B61-A689-85F7FF15598B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEEC3398-65C3-4B61-A689-85F7FF15598B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEEC3398-65C3-4B61-A689-85F7FF15598B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEEC3398-65C3-4B61-A689-85F7FF15598B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A5B142E-C80E-42EB-ABD4-76BD243699E2}.Debug|Any CPU.ActiveCfg = Debug
+		{2A5B142E-C80E-42EB-ABD4-76BD243699E2}.Release|Any CPU.ActiveCfg = Release
+		{DC8ACCF8-9040-4F6B-9227-B7A4902FA940}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC8ACCF8-9040-4F6B-9227-B7A4902FA940}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC8ACCF8-9040-4F6B-9227-B7A4902FA940}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC8ACCF8-9040-4F6B-9227-B7A4902FA940}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
