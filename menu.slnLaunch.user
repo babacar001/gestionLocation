@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Nouveau profil",
+    "Projects": [
+      {
+        "Path": "MetierGestion\\MetierGestion.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "menu\\menu.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

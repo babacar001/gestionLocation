@@ -23,8 +23,16 @@ namespace MetierGestion
         [OperationContract]
         bool AddAppartement(Appartement appartement);
 
+
         [OperationContract]
-        List<Appartement> GetListAppartements();
+        bool UpdateAppartement(Appartement appartement);
+
+        [OperationContract]
+        bool DeleteAppartement(Appartement appartement);
+
+
+        [OperationContract]
+        List<Appartement>  GetListAppartements(string adresse, float? capacite, bool? disponible);
 
         [OperationContract]
         Appartement GetAppartementById(int? id);

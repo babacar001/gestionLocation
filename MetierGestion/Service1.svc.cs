@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using MetierGestion.Model;
+using MetierGestion.Utils;
 
 namespace MetierGestion
 {
@@ -14,6 +16,7 @@ namespace MetierGestion
     public class Service1 : IService1
     {
         BdAppartementContext db = new BdAppartementContext();
+        Helper helper = new Helper();
 
         public string GetData(int value)
         {
@@ -44,7 +47,49 @@ namespace MetierGestion
                 db.appartements.Add(appartement);
                 db.SaveChanges();
             }
-            catch (Exception ex) { 
+            catch (Exception ex) {
+                helper.WriteDataError("Service1-AddAppartement", ex.ToString());
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Mise a jour d'un appartement
+        /// </summary>
+        /// <param name="appartement">Objet Appartement</param>
+        /// <returns>oui; si fait</returns>
+        public bool UpdateAppartement(Appartement appartement)
+        {
+            try
+            {
+                db.Entry(appartement).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                helper.WriteDataError("Service1-UpdateAppartement", ex.ToString());
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Methode pour supprimer un appartement 
+        /// </summary>
+        /// <param name="appartement">Objet appartement</param>
+        /// <returns>oui; si fait</returns>
+
+        public bool DeleteAppartement(Appartement appartement)
+        {
+            try
+            {
+                db.Entry(appartement).State = EntityState.Deleted;
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                helper.WriteDataError("Service1-DeleteAppartement", ex.ToString());
                 return false;
             }
             return true;
@@ -53,12 +98,35 @@ namespace MetierGestion
         /// <summary>
         /// cette  methode permet de recuperer la liste des appartements
         /// </summary>
-        /// <returns></returns>
-        public List<Appartement> GetListAppartements() 
-        { 
-            return db.appartements.ToList();
-        }
+        /// // <param name="adresse">adresse de recherche</param>
+        /// // <param name="capacite">capacite de recherche</param>
+        /// // <param name="disponible">disponible de recherche</param>
+        /// <returns>liste des appartements respectant le critere de recherche</returns>
+        public List<Appartement> GetListAppartements(string adresse, float? capacite, bool? disponible ) 
+        {
+            var liste = db.appartements.ToList();
+            if (!string.IsNullOrEmpty(adresse))
+            {
+                liste = liste.Where(a => a.AdresseAppartement.ToLower().Contains(adresse.ToLower())).ToList();
+            }
 
+            if (capacite!=null)
+            {
+                liste = liste.Where(a => a.Capacite==capacite).ToList();
+            }
+
+            if (disponible != null)
+            {
+                liste = liste.Where(a => a.Disponible == disponible).ToList();
+            }
+
+            return liste;
+        }
+        /// <summary>
+        /// renvoie un appartement
+        /// </summary>
+        /// <param name="id">identifiant appartement</param>
+        /// <returns>objet appartement</returns>
         public Appartement GetAppartementById(int? id)
         {
             return db.appartements.Find(id);

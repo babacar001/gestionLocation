@@ -527,11 +527,23 @@ namespace menu.MetierGestion {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/AddAppartement", ReplyAction="http://tempuri.org/IService1/AddAppartementResponse")]
         System.Threading.Tasks.Task<bool> AddAppartementAsync(menu.MetierGestion.Appartement appartement);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetListAppartements", ReplyAction="http://tempuri.org/IService1/GetListAppartementsResponse")]
-        menu.MetierGestion.Appartement[] GetListAppartements();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateAppartement", ReplyAction="http://tempuri.org/IService1/UpdateAppartementResponse")]
+        bool UpdateAppartement(menu.MetierGestion.Appartement appartement);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateAppartement", ReplyAction="http://tempuri.org/IService1/UpdateAppartementResponse")]
+        System.Threading.Tasks.Task<bool> UpdateAppartementAsync(menu.MetierGestion.Appartement appartement);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteAppartement", ReplyAction="http://tempuri.org/IService1/DeleteAppartementResponse")]
+        bool DeleteAppartement(menu.MetierGestion.Appartement appartement);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteAppartement", ReplyAction="http://tempuri.org/IService1/DeleteAppartementResponse")]
+        System.Threading.Tasks.Task<bool> DeleteAppartementAsync(menu.MetierGestion.Appartement appartement);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetListAppartements", ReplyAction="http://tempuri.org/IService1/GetListAppartementsResponse")]
-        System.Threading.Tasks.Task<menu.MetierGestion.Appartement[]> GetListAppartementsAsync();
+        menu.MetierGestion.Appartement[] GetListAppartements(string adresse, System.Nullable<float> capacite, System.Nullable<bool> disponible);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetListAppartements", ReplyAction="http://tempuri.org/IService1/GetListAppartementsResponse")]
+        System.Threading.Tasks.Task<menu.MetierGestion.Appartement[]> GetListAppartementsAsync(string adresse, System.Nullable<float> capacite, System.Nullable<bool> disponible);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAppartementById", ReplyAction="http://tempuri.org/IService1/GetAppartementByIdResponse")]
         menu.MetierGestion.Appartement GetAppartementById(System.Nullable<int> id);
@@ -591,12 +603,28 @@ namespace menu.MetierGestion {
             return base.Channel.AddAppartementAsync(appartement);
         }
         
-        public menu.MetierGestion.Appartement[] GetListAppartements() {
-            return base.Channel.GetListAppartements();
+        public bool UpdateAppartement(menu.MetierGestion.Appartement appartement) {
+            return base.Channel.UpdateAppartement(appartement);
         }
         
-        public System.Threading.Tasks.Task<menu.MetierGestion.Appartement[]> GetListAppartementsAsync() {
-            return base.Channel.GetListAppartementsAsync();
+        public System.Threading.Tasks.Task<bool> UpdateAppartementAsync(menu.MetierGestion.Appartement appartement) {
+            return base.Channel.UpdateAppartementAsync(appartement);
+        }
+        
+        public bool DeleteAppartement(menu.MetierGestion.Appartement appartement) {
+            return base.Channel.DeleteAppartement(appartement);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteAppartementAsync(menu.MetierGestion.Appartement appartement) {
+            return base.Channel.DeleteAppartementAsync(appartement);
+        }
+        
+        public menu.MetierGestion.Appartement[] GetListAppartements(string adresse, System.Nullable<float> capacite, System.Nullable<bool> disponible) {
+            return base.Channel.GetListAppartements(adresse, capacite, disponible);
+        }
+        
+        public System.Threading.Tasks.Task<menu.MetierGestion.Appartement[]> GetListAppartementsAsync(string adresse, System.Nullable<float> capacite, System.Nullable<bool> disponible) {
+            return base.Channel.GetListAppartementsAsync(adresse, capacite, disponible);
         }
         
         public menu.MetierGestion.Appartement GetAppartementById(System.Nullable<int> id) {

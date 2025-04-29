@@ -44,15 +44,47 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="UpdateAppartement">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/MetierGestion.Model" minOccurs="0" name="appartement" nillable="true" type="q4:Appartement" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateAppartementResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateAppartementResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteAppartement">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/MetierGestion.Model" minOccurs="0" name="appartement" nillable="true" type="q5:Appartement" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteAppartementResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteAppartementResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetListAppartements">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="adresse" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="capacite" nillable="true" type="xs:float" />
+        <xs:element minOccurs="0" name="disponible" nillable="true" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetListAppartementsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/MetierGestion.Model" minOccurs="0" name="GetListAppartementsResult" nillable="true" type="q4:ArrayOfAppartement" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/MetierGestion.Model" minOccurs="0" name="GetListAppartementsResult" nillable="true" type="q6:ArrayOfAppartement" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -66,7 +98,7 @@
   <xs:element name="GetAppartementByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/MetierGestion.Model" minOccurs="0" name="GetAppartementByIdResult" nillable="true" type="q5:Appartement" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/MetierGestion.Model" minOccurs="0" name="GetAppartementByIdResult" nillable="true" type="q7:Appartement" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

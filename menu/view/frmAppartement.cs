@@ -34,7 +34,7 @@ namespace menu.view
             cbbProprietaire.DataSource = LoadCbbProprietaire().ToList();
             cbbProprietaire.DisplayMember = "Text";
             cbbProprietaire.ValueMember = "Value";
-            dgAppartement.DataSource = service.GetListAppartements().Select(a => new { a.IdAppartement, a.IdProprietaire, a.Proprietaire.NomPrenom, a.NombrePiece, a.Capacite, a.Surface, a.Disponible }).ToList();
+            dgAppartement.DataSource = service.GetListAppartements(null, null, null).Select(a => new { a.IdAppartement, a.IdProprietaire, a.Proprietaire.NomPrenom, a.NombrePiece, a.Capacite, a.Surface, a.Disponible }).ToList();
             //db.appartements.Select(a => new { a.IdAppartement, a.IdProprietaire, a.Proprietaire.NomPrenom, a.NombrePiece, a.Capacite, a.Surface, a.Disponible }).ToList();
             txtAdresse.Focus();
         }
@@ -55,7 +55,6 @@ namespace menu.view
                 b.Text = item.NomPrenom;
                 b.Value = item.IdPersonne.ToString();
                 list.Add(b);
-
             }
             return list;
 
@@ -84,14 +83,15 @@ namespace menu.view
         private void btnModifier_Click(object sender, EventArgs e)
         {
             int? id = int.Parse(dgAppartement.CurrentRow.Cells[0].Value.ToString());
-            Appartement a = db.appartements.Find(id);
+            var a = service.GetAppartementById(id); // db.appartements.Find(id);
             a.Capacite = float.Parse(txtCapacite.Text);   
             a.Disponible = cbbDisponible.SelectedText == "Oui" ? true : false;
             a.Surface = float.Parse(txtSurface.Text);
             a.NombrePiece = int.Parse(txtNombrePiece.Text);
             a.AdresseAppartement = txtAdresse.Text;
             a.IdAppartement = int.Parse(cbbProprietaire.SelectedValue.ToString());
-            db.SaveChanges();
+            // db.SaveChanges();
+            service.UpdateAppartement(a);
             ResetForm();
         }
 
@@ -104,9 +104,10 @@ namespace menu.view
             if (result == DialogResult.Yes)
             {
                 int? id = int.Parse(dgAppartement.CurrentRow.Cells[0].Value.ToString());
-                Appartement a = db.appartements.Find(id);
-                db.appartements.Remove(a);
-                db.SaveChanges();
+                var a = service.GetAppartementById(id); //db.appartements.Find(id);
+                service.DeleteAppartement(a);
+               // db.appartements.Remove(a);
+               // db.SaveChanges();
                 ResetForm();
             }
            
